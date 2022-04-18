@@ -21,6 +21,7 @@ router.route("/display").get((req,res)=>{
 
 router.route("/displayOne/:pid").get((req,res)=>{
     let PID = req.params.pid;
+    
     registrationPay.findOne({_id:PID}).then((payments)=>{
         res.json(payments)
     }).catch((err)=>{
