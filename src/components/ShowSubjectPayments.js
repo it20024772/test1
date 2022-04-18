@@ -43,30 +43,34 @@ export default function ShowRegistrationPayments(){
 }
 
     return(
-        <div>
-            <h1>Subject Payments - Admin</h1>
-            <table class="table">
+        <div className="container">
+            <h2 style={{textAlign: "center", margin:"20px"}}>Subject Payments</h2>
+            <div style={{padding:"5px 0px 5px 0px"}}>
+            <table class="table table-striped table-dark">
+            <thead>
                 <tr>
-                    <th>SID</th>
-                    <th>Module Code</th>
-                    <th>Year</th>
-                    <th>Semester</th>
-                    <th>Amount(Rs.)</th>
-                    <th>Deposit Slip</th>
-                    <th>Date</th>
-                    <th>Status</th>
+                    <th scope="col">SID</th>
+                    <th scope="col">Module Code</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Semester</th>
+                    <th scope="col">Amount(Rs.)</th>
+                    <th scope="col">Deposit Slip</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
                 </tr>
+                </thead>
 
+                <tbody>
                 {payments.map((payment) => (
-                    <tr>
-                        <td>{payment.SID}</td>
-                        <td>{payment.Module}</td>
-                        <td>{payment.Year}</td>
-                        <td>{payment.Semester}</td>
-                        <td>{payment.Amount}</td>
-                        <td>{payment.date}</td>
-                        <td>{payment.Status}</td>
-                        <td><form onSubmit={reviewData}>
+                    <tr class="bg-primary">
+                        <td class="bg-primary">{payment.SID}</td>
+                        <td class="bg-primary">{payment.Module}</td>
+                        <td class="bg-primary">{payment.Year}</td>
+                        <td class="bg-primary">{payment.Semester}</td>
+                        <td class="bg-primary">{payment.Amount}</td>
+                        <td class="bg-primary">{payment.date}</td>
+                        <td class="bg-primary">{payment.Status}</td>
+                        <td class="bg-primary"><form onSubmit={reviewData}>
                             <input value={payment.Status} hidden="true" onChange={(e)=>{
                             setCurrentStatus(e.target.value);
                             }}/>
@@ -78,7 +82,9 @@ export default function ShowRegistrationPayments(){
                     </tr>
           
                 ))}
+                </tbody>
             </table>
+            </div>
         </div>
 
     )

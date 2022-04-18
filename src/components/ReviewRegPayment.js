@@ -14,6 +14,7 @@ export default function ReviewRegPayments(){
 
     let navigate = useNavigate();
 
+
     useEffect(()=>{
         function getPayment(){
             axios.get(`http://localhost:8070/registrationPayments/displayOne/${pid}`).then((res)=>{
@@ -46,24 +47,20 @@ export default function ReviewRegPayments(){
 }
 
     return(
-        <div>
-            <h1>Review Reg. Payment</h1>
-            <br></br>
-            <p>Student ID</p>
-            <p>{payment.SID}</p>
-            <p>Amount</p>
-            <p>{payment.Amount}</p>
-            <p>Date</p>
-            <p>{payment.date}</p>
-            <p>Deposit Slip</p>
-            <img src={payment.DepositSlip} width={500} height={300}/><br/>
+        <div className="container" style={{maxWidth:"1000px", marginTop:"50px", border: "3px solid #0d6efd",borderRadius:"10px", padding:"10px 40px 40px 40px"}}>
+            <h4 style={{textAlign: "center", margin:"10px 5px 40px 5px"}}>Payment Details</h4>
+            <div style={{display: "flex", flexDirection:"column", alignItems:"center"}}>
+            <p>Student ID: {payment.SID}</p>
+            <p>Amount: Rs. {payment.Amount}</p>
+            <p>Date: {payment.date}</p>
+            <p>Deposit Slip: </p>
+            <img src={payment.DepositSlip} width={500} height={200}/><br/>
             <a download={payment.SID} href={payment.DepositSlip}>Download</a>
-
-            <p>Status</p>
-            <p>{payment.Status}</p>
-            <form onSubmit={acceptPayment}>
-                            <button type="submit" class="btn btn-primary">Accept</button>
+            
+            <form style={{margin:"20px"}} onSubmit={acceptPayment}>
+                <button type="submit" class="btn btn-primary">Accept</button>
             </form>
+            </div>
         </div>
     )
 }

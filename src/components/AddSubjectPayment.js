@@ -40,11 +40,12 @@ export default function AddSubjectPayment(){
     
 
     return(
-            <div className="container">
-                <form onSubmit={sendData}>
+            <div className="container" style={{maxWidth:"700px", marginTop:"50px", border: "3px solid #0d6efd",borderRadius:"10px", padding:"10px 40px 40px 40px"}}>
+                <h4 style={{textAlign: "center", margin:"10px 5px 40px 5px"}}>Make Subject Payment</h4>
+                <form style={{display:"flex", flexDirection:"column"}} onSubmit={sendData}>
                     <div className="mb-3">
                         <label for="SID" className="form-label">Student ID: </label>
-                        <input type="text" className="form-control" id="SID" 
+                        <input type="text" placeholder="S001" pattern="[S][0-9]{3,}" className="form-control" id="SID" 
                         onChange={(e)=>{
 
                             setSID(e.target.value);
@@ -54,7 +55,7 @@ export default function AddSubjectPayment(){
 
                     <div className="mb-3">
                         <label for="email" className="form-label">Email: </label>
-                        <input type="email" className="form-control" id="email"
+                        <input type="email" placeholder="johndoe@gmail.com" className="form-control" id="email"
                         onChange={(e)=>{
 
                             setEmail(e.target.value);
@@ -64,7 +65,7 @@ export default function AddSubjectPayment(){
 
                     <div className="mb-3">
                         <label for="moduleCode" className="form-label">Module Code: </label>
-                        <input type="text" className="form-control" id="moduleCode" 
+                        <input type="text" placeholder="M001" pattern="[M][0-9]{3,}" className="form-control" id="moduleCode" 
                         onChange={(e)=>{
 
                             setModule(e.target.value);
@@ -74,7 +75,7 @@ export default function AddSubjectPayment(){
 
                     <div className="mb-3">
                         <label for="year" className="form-label">Year: </label>
-                        <input type="text" className="form-control" id="year" 
+                        <input type="number" placeholder="1" min="1" max="4"className="form-control" id="year" 
                         onChange={(e)=>{
 
                             setYear(e.target.value);
@@ -84,7 +85,7 @@ export default function AddSubjectPayment(){
 
                     <div className="mb-3">
                         <label for="semester" className="form-label">Semester: </label>
-                        <input type="text" className="form-control" id="semester" 
+                        <input type="number" placeholder="2"  min="1" max="2" className="form-control" id="semester" 
                         onChange={(e)=>{
 
                             setSemester(e.target.value);
@@ -93,8 +94,8 @@ export default function AddSubjectPayment(){
                     </div>
 
                     <div className="mb-3">
-                        <label for="amount" className="form-label">Amount: </label>
-                        <input type="number" className="form-control" id="amount"
+                        <label for="amount" className="form-label">Amount (Rs): </label>
+                        <input type="number" placeholder="2500.00" min="2500.00" className="form-control" id="amount"
                         onChange={(e)=>{
 
                             setAmount(e.target.value);
@@ -113,7 +114,7 @@ export default function AddSubjectPayment(){
                     </div>
                     
                     
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button style={{alignSelf:"center", marginTop:"20px"}} type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
     )

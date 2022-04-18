@@ -33,10 +33,12 @@ export default function MyPendingPayments(){
 
     return(
         <div className="container">
-            <h1>My Pending Payments</h1>
+            <h2 style={{textAlign: "center", margin:"20px"}}>My Pending Payments</h2>
 
-            <table class="table">
-                <tr>
+            <div style={{padding:"5px 100px 5px 100px"}}>
+            <table class="table table-striped">
+            <thead>
+                <tr class="table-primary">
                     <th>Module Code</th>
                     <th>Year</th>
                     <th>Semester</th>
@@ -44,8 +46,11 @@ export default function MyPendingPayments(){
                     <th>Deposit Slip</th>
                     <th>Date</th>
                     <th>Status</th>
+                    <th></th>
                 </tr>
+                </thead>
 
+                <tbody>
                 {payments.map((payment) => (
                     <tr>
                         <td>{payment.Module}</td>
@@ -64,7 +69,9 @@ export default function MyPendingPayments(){
                     </tr>
           
                 ))}
+                </tbody>
             </table>
+            </div>
         </div>
     )
 }

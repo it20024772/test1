@@ -34,11 +34,13 @@ export default function AddRegPayment(){
     
 
     return(
-            <div className="container">
-                <form onSubmit={sendData}>
+    
+            <div className="container" style={{maxWidth:"500px", marginTop:"100px", border: "3px solid #0d6efd",borderRadius:"10px", padding:"10px 40px 40px 40px"}}>
+                <h4 style={{textAlign: "center", margin:"10px 5px 40px 5px"}}>Make Registration Payment</h4>
+                <form style={{display:"flex", flexDirection:"column"}} onSubmit={sendData}>
                     <div className="mb-3">
                         <label for="SID" className="form-label">Student ID: </label>
-                        <input type="text" className="form-control" id="SID" 
+                        <input type="text" className="form-control" placeholder="S001" pattern="[S][0-9]{3,}" id="SID" 
                         onChange={(e)=>{
 
                             setSID(e.target.value);
@@ -48,7 +50,7 @@ export default function AddRegPayment(){
 
                     <div className="mb-3">
                         <label for="email" className="form-label">Email: </label>
-                        <input type="email" className="form-control" id="email"
+                        <input type="email" placeholder="johndoe@gmail.com" className="form-control" id="email"
                         onChange={(e)=>{
 
                             setEmail(e.target.value);
@@ -57,8 +59,8 @@ export default function AddRegPayment(){
                     </div>
 
                     <div className="mb-3">
-                        <label for="amount" className="form-label">Amount: </label>
-                        <input type="number" className="form-control" id="amount"
+                        <label for="amount" className="form-label">Amount (Rs): </label>
+                        <input type="number" placeholder="5000.00" min="5000.00" className="form-control" id="amount"
                         onChange={(e)=>{
 
                             setAmount(e.target.value);
@@ -77,7 +79,7 @@ export default function AddRegPayment(){
                     </div>
                     
                     
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button style={{alignSelf:"center", marginTop:"20px"}} type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
     )
