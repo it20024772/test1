@@ -48,4 +48,14 @@ router.route("/update/:pid").put(async (req, res) => {
     
 })
 
+router.route("/display/:sid").get((req,res)=>{
+    let SID = req.params.sid;
+    modulePay.find({SID:SID, Status:{ $in: ["pending", "reviewing" ] }}).then((payments)=>{
+        res.json(payments)
+    }).catch((err)=>{
+        console.log(err);
+    })
+
+})
+
 module.exports = router;

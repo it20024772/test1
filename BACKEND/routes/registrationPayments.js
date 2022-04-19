@@ -30,6 +30,16 @@ router.route("/displayOne/:pid").get((req,res)=>{
 
 })
 
+router.route("/display/:sid").get((req,res)=>{
+    let SID = req.params.sid;
+    registrationPay.find({SID:SID, Status:{ $in: ["pending", "reviewing" ] }}).then((payments)=>{
+        res.json(payments)
+    }).catch((err)=>{
+        console.log(err);
+    })
+
+})
+
 router.route("/update/:pid").put(async (req, res) => {
     let PID = req.params.pid;
     const stateToBeUpdated = req.body.stateToBeUpdated;
