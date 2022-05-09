@@ -58,4 +58,32 @@ router.route("/display/:sid").get((req,res)=>{
 
 })
 
+router.route("/reportSubPay/:year").get((req, res)=>{
+        let year = req.params.year;
+
+        modulePay.find({Status:"accepted"}).then((payments)=>{
+
+            let totSubPay = 0;
+            let numSubPay = 0;
+
+            payments.map((p)=>{
+                if (p.date.slice(0,4) === year){
+                    totSubPay += p.Amount;
+                    numSubPay += 1;
+                }
+            })
+
+            const subReport = {
+                totSubPay,
+                numSubPay
+            }
+            res.json(subReport)
+        }).catch((err)=>{
+            console.log(err);
+        })
+
+})
+
+
+
 module.exports = router;

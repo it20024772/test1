@@ -28,11 +28,13 @@ const studentRegPaymentsRouter = require("./routes/studentRegistrationPayments.j
 const studentSubjectPaymentsRouter = require("./routes/studentSubjectPayments.js");
 const regPaymentsRouter = require("./routes/registrationPayments.js");
 const subjectPaymentsRouter = require("./routes/subjectPayments.js");
+const userRoutes = require("./routes/users.js");
 
 app.use("/studentRegistrationPayment", studentRegPaymentsRouter);
 app.use("/studentSubjectPayment", studentSubjectPaymentsRouter);
 app.use("/registrationPayments", regPaymentsRouter);
 app.use("/subjectPayments", subjectPaymentsRouter);
+app.use("/user", userRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is up and running on port number: ${PORT}`);

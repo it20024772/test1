@@ -1,5 +1,6 @@
 const router = require("express").Router();
 let registrationPay = require("../models/registrationPay");
+let modulePay = require("../models/subjectPay");
 
 router.route("/displayPending").get((req,res)=>{
     registrationPay.find({Status:{ $in: ["pending", "reviewing" ] }}).sort({Status:'-1', createdAt: 'asc'}).then((payments)=>{
@@ -40,6 +41,7 @@ router.route("/display/:sid").get((req,res)=>{
 
 })
 
+
 router.route("/update/:pid").put(async (req, res) => {
     let PID = req.params.pid;
     const stateToBeUpdated = req.body.stateToBeUpdated;
@@ -55,18 +57,34 @@ router.route("/update/:pid").put(async (req, res) => {
             res.status(200).send()
 
     }
-    // const {SID,Amount,date,Email,DepositSlip,Status} = req.body;
+})
 
-    // const updateRegPay = {
-    //     SID,
-    //     Amount,
-    //     date,
-    //     Email,
-    //     DepositSlip,
-    //     Status,
-    // }
 
+router.route("/reportRegPay/:year").get((req, res)=>{
+    let year = req.params.year;
+
+    registrationPay.find({Status:"accepted"}).then((payments)=>{
+
+        let totRegPay = 0;
+        let numRegPay = 0;
+
+        payments.map((p)=>{
+            if (p.date.slice(0,4) === year){
+                totRegPay += p.Amount;
+                numRegPay += 1;
+            }
+        })
+
+        const regReport = {
+            totRegPay,
+            numRegPay
+        }
+        res.json(regReport)
+    }).catch((err)=>{
+        console.log(err);
+    })
 
 })
+
 
 module.exports = router;
